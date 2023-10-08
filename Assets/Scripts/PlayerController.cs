@@ -21,7 +21,7 @@ public class PlayerController : Agent
 
     Stats stats;
 
-    private float moveForce = 5.0f;
+    private float moveForce = 10.0f;
     private float turnForce = 0.01f;
 
     private float deathReward = 20.0f;
@@ -85,11 +85,13 @@ public class PlayerController : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         if (inHumanControl) return;
+        
+        var dir = goal.transform.localPosition - transform.localPosition;
+        var angle = Vector3.Angle(transform.forward, dir);
+        sensor.AddObservation(angle);
 
-        sensor.AddObservation(transform.localPosition); //X,Y,Z of the agent
-        sensor.AddObservation(transform.localRotation.eulerAngles.y);
-
-        sensor.AddObservation(goal.transform.localPosition);
+        var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        sensor.AddObservation(dist);
     }
 
     public override void OnActionReceived(ActionBuffers actions)

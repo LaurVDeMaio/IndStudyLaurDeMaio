@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: 8020097091428530895}
   - component: {fileID: 4506686665602620503}
   - component: {fileID: 2175009769220183316}
-  - component: {fileID: 7818651123847257446}
   - component: {fileID: 5488012205597629858}
   - component: {fileID: 5922006555448746584}
   m_Layer: 0
@@ -204,7 +203,7 @@ Rigidbody:
   m_GameObject: {fileID: 491208415681983010}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -269,22 +268,6 @@ MonoBehaviour:
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
---- !u!114 &7818651123847257446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491208415681983010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b6042bc9a5d4aa58d931eae49442e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
 --- !u!114 &5488012205597629858
 MonoBehaviour:
   m_ObjectHideFlags: 0
