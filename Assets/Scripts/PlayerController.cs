@@ -74,6 +74,7 @@ public class PlayerController : Agent
 
         transform.localPosition = startingPosition;
         lastDist = Mathf.Abs(goal.transform.localPosition.z - transform.localPosition.z);
+        //lastDist = Vector3.Distance(goal.transform.localPosition.z, transform.localPosition.z);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -108,11 +109,10 @@ public class PlayerController : Agent
 
     void DoingTheThing()
     {
-        
-        rb.AddForce(0, 0, move * moveForce, ForceMode.Force);
+        rb.AddForce(transform.forward * move * moveForce, ForceMode.Force);
         rb.AddTorque(0, turn * turnForce, 0, ForceMode.Force);
 
-        var curdist = Mathf.Abs(goal.transform.localPosition.z - transform.localPosition.z);
+        var curdist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
         if (curdist < lastDist)
         {
             SetReward(rCloser);
@@ -125,8 +125,8 @@ public class PlayerController : Agent
         lastDist = curdist;
     }
 
-   
-    
+
+
     void Update() {
         if (inHumanControl) {
             move = 0;
