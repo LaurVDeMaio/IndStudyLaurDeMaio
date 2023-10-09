@@ -30,7 +30,7 @@ public class Stats : MonoBehaviour
 
     void Awake()
     {
-        return;
+        //return;
 
         Goals = new List<int>();
 
@@ -57,7 +57,7 @@ public class Stats : MonoBehaviour
 
     public void AddGoal(int agentEpisode, int x)
     {
-        return;
+        //return;
 
         Goals.RemoveAt(0);
 

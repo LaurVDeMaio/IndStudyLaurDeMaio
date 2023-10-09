@@ -236,7 +236,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 10000
   inHumanControl: 0
 --- !u!114 &2175009769220183316
 MonoBehaviour:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 7
+    VectorObservationSize: 2
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -296,8 +296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 6539266182411224788}
   m_SensorName: CameraSensor
-  m_Width: 30
-  m_Height: 30
+  m_Width: 64
+  m_Height: 48
   m_Grayscale: 1
   m_ObservationType: 0
   m_ObservationStacks: 1

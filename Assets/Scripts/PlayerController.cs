@@ -15,19 +15,21 @@ public class PlayerController : Agent
     GameObject goal, trainingArea, environment;
     Vector3 startingPosition;
     float lastDist;
+    float lastAngle = 360;
 
     float move = 0;
     float turn = 0;
 
     Stats stats;
 
-    private float moveForce = 10.0f;
+    private float moveForce = 15.0f;
     private float turnForce = 0.01f;
 
     private float deathReward = 20.0f;
     private float goalReward = 12.0f;
     private float rCloser = 0.02f;
     private float rFurther = 0.05f;
+    private float rAngle = 0.05f;
 
     RaycastHit hit;
     LayerMask ground;
@@ -73,8 +75,10 @@ public class PlayerController : Agent
         episodeNum = stats.StartEpisode();
 
         transform.localPosition = startingPosition;
-        lastDist = Mathf.Abs(goal.transform.localPosition.z - transform.localPosition.z);
-        //lastDist = Vector3.Distance(goal.transform.localPosition.z, transform.localPosition.z);
+        lastDist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        var dir = goal.transform.localPosition - transform.localPosition;
+        var angle = Vector3.Angle(transform.forward, dir);
+        lastAngle = angle;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -123,6 +127,14 @@ public class PlayerController : Agent
         }
 
         lastDist = curdist;
+
+        var dir = goal.transform.localPosition - transform.localPosition;
+        var curAngle = Vector3.Angle(transform.forward, dir);
+        if (curAngle < lastAngle)
+        {
+            SetReward(rAngle);
+        }
+        lastAngle = curAngle;
     }
 
 
