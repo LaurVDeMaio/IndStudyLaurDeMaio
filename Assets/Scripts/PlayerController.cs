@@ -12,7 +12,7 @@ public class PlayerController : Agent
     [SerializeField]
     public bool inHumanControl;
 
-    GameObject goal, trainingArea, environment;
+    GameObject goal, trainingArea, environment, obstacle;
     Vector3 startingPosition;
     float lastDist;
     float lastAngle = 360;
@@ -32,7 +32,7 @@ public class PlayerController : Agent
     private float rAngle = 0.05f;
 
     RaycastHit hit;
-    LayerMask ground;
+    LayerMask collisions;
 
     int episodeNum = 0;
 
@@ -49,15 +49,27 @@ public class PlayerController : Agent
         environment = trainingArea.transform.Find("Environment").gameObject;
 
         goal = trainingArea.transform.Find("Goal").gameObject;
-        //idk if this is right
-        //camera = trainingArea.transform.Find("PCam").gameObject;
+        obstacle = environment.transform.Find("box").gameObject;
 
-
-        //ground = LayerMask.GetMask("Ground");
+        
     }
 
 
     public Vector3 RandomizeGoalPosition(Vector3 pos)
+    {
+        pos.z = Random.Range(-29.0f, 29.0f);
+        pos.x = Random.Range(-29.0f, 29.0f);
+        return pos;
+    }
+
+    public Vector3 RandomizePlayerPosition(Vector3 pos)
+    {
+        pos.z = Random.Range(-29.0f, 29.0f);
+        pos.x = Random.Range(-29.0f, 29.0f);
+        return pos;
+    }
+
+    public Vector3 RandomizeObstaclePosition(Vector3 pos)
     {
         pos.z = Random.Range(-29.0f, 29.0f);
         pos.x = Random.Range(-29.0f, 29.0f);
@@ -69,6 +81,33 @@ public class PlayerController : Agent
         if (goal != null) goal.transform.localPosition = RandomizeGoalPosition(goal.transform.localPosition);
         
     }
+
+    public void RandomizePlayers()
+    {
+        if (rb != null) rb.transform.localPosition = RandomizePlayerPosition(rb.transform.localPosition);
+
+    }
+
+    public void RandomizeObstacles()
+    {
+        if (obstacle != null) obstacle.transform.localPosition = RandomizeObstaclePosition(obstacle.transform.localPosition);
+
+    }
+
+    //void MyCollisions()
+    //{
+    //    Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, collisions);
+    //    int i = 0;
+
+    //    while (i < hitColliders.Length)
+    //    {
+    //        //Output all of the collider names
+    //        Debug.Log("Hit : " + hitColliders[i].name + i);
+    //        //Increase the number of Colliders in the array
+    //        i++;
+    //    }
+    //}
+
 
     public override void OnEpisodeBegin()
     {
@@ -84,7 +123,8 @@ public class PlayerController : Agent
         rb.angularVelocity = Vector3.zero;
 
         RandomizeGoals();
-
+        RandomizePlayers();
+        RandomizeObstacles();
     }
 
     public override void CollectObservations(VectorSensor sensor)
