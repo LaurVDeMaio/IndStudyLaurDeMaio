@@ -27,8 +27,8 @@ public class PlayerController : Agent
 
     private float deathReward = 20.0f;
     private float goalReward = 12.0f;
-    private float rCloser = 0.02f;
-    private float rFurther = 0.05f;
+    private float rCloser = 0.07f;
+    private float rFurther = 0.02f;
     private float rAngle = 0.05f;
 
     RaycastHit hit;
