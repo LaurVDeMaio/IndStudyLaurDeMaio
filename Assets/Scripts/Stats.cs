@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
+
+    //fail count, goal count 
 {
     List<int> Goals;
     int numEpisodes = 0;
