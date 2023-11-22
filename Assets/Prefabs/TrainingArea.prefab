@@ -804,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_Name
-      value: box (1)
+      value: box1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_TagString
@@ -911,7 +911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_Name
-      value: box (2)
+      value: box2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_TagString
@@ -968,6 +968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 2fc281030c79d46479a32b386eeb97bc, type: 3}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 2
@@ -1223,7 +1227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_Name
-      value: box (3)
+      value: box3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3df68b7d46e134093ba810db343585b6, type: 3}
       propertyPath: m_TagString

@@ -12,7 +12,7 @@ public class PlayerController : Agent
     [SerializeField]
     public bool inHumanControl;
 
-    GameObject goal, trainingArea, environment, obstacle;
+    GameObject goal, trainingArea, environment, o1, o2, o3, o4;
     Vector3 startingPosition;
     float lastDist;
     float lastAngle = 360;
@@ -33,6 +33,7 @@ public class PlayerController : Agent
 
     RaycastHit hit;
     LayerMask collisions;
+    
 
     int episodeNum = 0;
 
@@ -49,66 +50,47 @@ public class PlayerController : Agent
         environment = trainingArea.transform.Find("Environment").gameObject;
 
         goal = trainingArea.transform.Find("Goal").gameObject;
-        obstacle = environment.transform.Find("box").gameObject;
+        o1 = environment.transform.Find("box").gameObject;
+        if (o2 != null) o2 = environment.transform.Find("box1").gameObject;
+        if (o3 != null) o3 = environment.transform.Find("box2").gameObject;
+        if(o4 != null) o4 = environment.transform.Find("box3").gameObject;
 
-        
+
     }
-
-
-    public Vector3 RandomizeGoalPosition(Vector3 pos)
+    public Vector3 FindSafePos(Vector3 offset, float y)
     {
-        pos.z = Random.Range(-29.0f, 29.0f);
-        pos.x = Random.Range(-29.0f, 29.0f);
-        return pos;
+        while (true)
+        {
+            Vector3 pos = new Vector3(Random.Range(-29.0f, 29.0f), 0.5f, Random.Range(-29.0f, 29.0f));
+            var colliders = Physics.OverlapBox(pos + offset, new Vector3(2.0f, 0.25f, 2.0f));
+            if (colliders.Length == 0) return new Vector3(pos.x,y, pos.z);
+        }
     }
 
-    public Vector3 RandomizePlayerPosition(Vector3 pos)
-    {
-        pos.z = Random.Range(-29.0f, 29.0f);
-        pos.x = Random.Range(-29.0f, 29.0f);
-        return pos;
-    }
 
-    public Vector3 RandomizeObstaclePosition(Vector3 pos)
-    {
-        pos.z = Random.Range(-29.0f, 29.0f);
-        pos.x = Random.Range(-29.0f, 29.0f);
-        return pos;
-    }
 
     public void RandomizeGoals()
     {
-        if (goal != null) goal.transform.localPosition = RandomizeGoalPosition(goal.transform.localPosition);
+        if (goal != null) goal.transform.localPosition = FindSafePos(trainingArea.transform.position, 0.74f);
         
     }
 
     public void RandomizePlayers()
     {
-        if (rb != null) rb.transform.localPosition = RandomizePlayerPosition(rb.transform.localPosition);
+        if (rb != null) rb.transform.localPosition = FindSafePos(trainingArea.transform.position, 1.0f);
 
     }
 
     public void RandomizeObstacles()
     {
-        if (obstacle != null) obstacle.transform.localPosition = RandomizeObstaclePosition(obstacle.transform.localPosition);
+        if (o1 != null) o1.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
+        if (o2 != null) o2.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
+        if (o3 != null) o3.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
+        if (o4 != null) o4.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
 
     }
 
-    //void MyCollisions()
-    //{
-    //    Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, collisions);
-    //    int i = 0;
-
-    //    while (i < hitColliders.Length)
-    //    {
-    //        //Output all of the collider names
-    //        Debug.Log("Hit : " + hitColliders[i].name + i);
-    //        //Increase the number of Colliders in the array
-    //        i++;
-    //    }
-    //}
-
-
+   
     public override void OnEpisodeBegin()
     {
         episodeNum = stats.StartEpisode();
