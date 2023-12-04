@@ -12,7 +12,11 @@ public class PlayerController : Agent
     [SerializeField]
     public bool inHumanControl;
 
-    GameObject goal, trainingArea, environment, o1, o2, o3, o4;
+    GameObject goal, trainingArea, environment;
+    GameObject[] obstacles;
+    public int obsCount = 1;
+    public GameObject obstacle;
+
     Vector3 startingPosition;
     float lastDist;
     float lastAngle = 360;
@@ -48,13 +52,16 @@ public class PlayerController : Agent
         if (trainingArea.name != "TrainingArea") trainingArea = trainingArea.transform.parent.gameObject;
 
         environment = trainingArea.transform.Find("Environment").gameObject;
-
         goal = trainingArea.transform.Find("Goal").gameObject;
-        o1 = environment.transform.Find("box").gameObject;
-        if (o2 != null) o2 = environment.transform.Find("box1").gameObject;
-        if (o3 != null) o3 = environment.transform.Find("box2").gameObject;
-        if(o4 != null) o4 = environment.transform.Find("box3").gameObject;
 
+
+
+        obstacles = new GameObject[obsCount];
+        for (int i = 0; i < obsCount; i++)
+        {
+            var pos = new Vector3(0, 10000, 0);
+            obstacles[i] = Instantiate(obstacle, pos, Quaternion.identity, environment.transform);
+        }
 
     }
     public Vector3 FindSafePos(Vector3 offset, float y)
@@ -62,7 +69,7 @@ public class PlayerController : Agent
         while (true)
         {
             Vector3 pos = new Vector3(Random.Range(-29.0f, 29.0f), 0.5f, Random.Range(-29.0f, 29.0f));
-            var colliders = Physics.OverlapBox(pos + offset, new Vector3(2.0f, 0.25f, 2.0f));
+            var colliders = Physics.OverlapBox(pos + offset, new Vector3(3.0f, 0.25f, 3.0f));
             if (colliders.Length == 0) return new Vector3(pos.x,y, pos.z);
         }
     }
@@ -81,14 +88,17 @@ public class PlayerController : Agent
 
     }
 
-    public void RandomizeObstacles()
-    {
-        if (o1 != null) o1.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
-        if (o2 != null) o2.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
-        if (o3 != null) o3.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
-        if (o4 != null) o4.transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
 
+    public void RandomizeObstaclesPosition()
+    {
+        //randomize position of each obstacle
+
+        for(int i = 0; i < obsCount; i++)
+        {
+            obstacles[i].transform.localPosition = FindSafePos(trainingArea.transform.position, 0f);
+        }
     }
+
 
    
     public override void OnEpisodeBegin()
@@ -106,7 +116,9 @@ public class PlayerController : Agent
 
         RandomizeGoals();
         RandomizePlayers();
-        RandomizeObstacles();
+
+        //instantiate a random number of boxes
+        RandomizeObstaclesPosition();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -186,28 +198,6 @@ public class PlayerController : Agent
     void FixedUpdate() {
 
         DoingTheThing();
-
-        //not ready yet 
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, Mathf.Infinity, ground) || Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity, ground))
-        //{
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-
-        //    //Debug.Log("<color=#ffffff>Did Hit</color>");
-
-        //    //SetReward(0.001f);
-        //}
-
-
-        //else
-        //{
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 1000, Color.red);
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 1000, Color.red);
-
-        //    //Debug.Log("<color=#a86232>Did not Hit</color>");
-
-        //    //SetReward(-0.03f);
-        //}
 
     }
 
