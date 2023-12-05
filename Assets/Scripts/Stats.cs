@@ -76,16 +76,18 @@ public class Stats : MonoBehaviour
             total += g;
         }
 
-        if (total > highest)
-        {
-            highest = total;
-            hightime = stopwatch.Elapsed;
-            highepisode = agentEpisode;
-            csv += highest + "," + highepisode + "," + ConvertTime(hightime) + "\n";
-            System.IO.File.WriteAllText(csv_filename, csv);
-        }
+        //if (total > highest)
+        //{
+        //    highest = total;
+        //    hightime = stopwatch.Elapsed;
+        //    highepisode = agentEpisode;
+        //    csv += highest + "," + highepisode + "," + ConvertTime(hightime) + "\n";
+        //    System.IO.File.WriteAllText(csv_filename, csv);
+        //}
 
-        Debug.Log("Goals: " + total + "/100 -- " + highest + " -- " + ConvertTime(hightime) + " -- " + highepisode);
+        //Debug.Log("Goals: " + total + "/100 -- " + highest + " -- " + ConvertTime(hightime) + " -- " + highepisode);
+
+        Debug.Log("total successes: " + total);
     }
 
     string ConvertTime(System.TimeSpan ts)
