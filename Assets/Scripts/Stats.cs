@@ -18,6 +18,8 @@ public class Stats : MonoBehaviour
     string csv = "";
     string csv_filename = "";
 
+    int ohno, goal = 0;
+
     public int StartEpisode()
     {
          numEpisodes++;
@@ -59,35 +61,19 @@ public class Stats : MonoBehaviour
 
     public void AddGoal(int agentEpisode, int x)
     {
-        //return;
-
-        Goals.RemoveAt(0);
-
-        if(x == 1) {
-            Goals.Add(1);
-        }
-        else if(x == 0) {
-            Goals.Add(0);
-        }
-
-        int total = 0;
-        foreach (var g in Goals)
+        if (x == 1)
         {
-            total += g;
+            goal++;
+            
         }
 
-        //if (total > highest)
-        //{
-        //    highest = total;
-        //    hightime = stopwatch.Elapsed;
-        //    highepisode = agentEpisode;
-        //    csv += highest + "," + highepisode + "," + ConvertTime(hightime) + "\n";
-        //    System.IO.File.WriteAllText(csv_filename, csv);
-        //}
+        else if (x == 0)
+        {
+            ohno++;
+           
+        }
 
-        //Debug.Log("Goals: " + total + "/100 -- " + highest + " -- " + ConvertTime(hightime) + " -- " + highepisode);
-
-        Debug.Log("total successes: " + total);
+        Debug.Log("Goals: " + goal + " Fails: " + ohno + " Total: " + (goal+ohno));
     }
 
     string ConvertTime(System.TimeSpan ts)
