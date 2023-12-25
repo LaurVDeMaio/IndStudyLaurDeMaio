@@ -124,13 +124,15 @@ public class PlayerController : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         if (inHumanControl) return;
-        
-        var dir = goal.transform.localPosition - transform.localPosition;
-        var angle = Vector3.Angle(transform.forward, dir);
-        sensor.AddObservation(angle);
 
-        var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
-        sensor.AddObservation(dist);
+        sensor.AddObservation(transform.localPosition);
+        
+        //var dir = goal.transform.localPosition - transform.localPosition;
+        //var angle = Vector3.Angle(transform.forward, dir);
+        //sensor.AddObservation(angle);
+
+        //var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        //sensor.AddObservation(dist);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -150,25 +152,25 @@ public class PlayerController : Agent
         rb.AddForce(transform.forward * move * moveForce, ForceMode.Force);
         rb.AddTorque(0, turn * turnForce, 0, ForceMode.Force);
 
-        var curdist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
-        if (curdist < lastDist)
-        {
-            SetReward(rCloser);
-        }
-        else
-        {
-            SetReward(-rFurther);
-        }
+        // var curdist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        // if (curdist < lastDist)
+        // {
+        //     SetReward(rCloser);
+        // }
+        // else
+        // {
+        //     SetReward(-rFurther);
+        // }
 
-        lastDist = curdist;
+        //lastDist = curdist;
 
-        var dir = goal.transform.localPosition - transform.localPosition;
-        var curAngle = Vector3.Angle(transform.forward, dir);
-        if (curAngle < lastAngle)
-        {
-            SetReward(rAngle);
-        }
-        lastAngle = curAngle;
+        // var dir = goal.transform.localPosition - transform.localPosition;
+        // var curAngle = Vector3.Angle(transform.forward, dir);
+        // if (curAngle < lastAngle)
+        // {
+        //     SetReward(rAngle);
+        // }
+        // lastAngle = curAngle;
     }
 
 
