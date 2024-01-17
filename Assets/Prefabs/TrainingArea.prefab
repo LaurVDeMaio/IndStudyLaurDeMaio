@@ -218,10 +218,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
-  - Death
   - Goal
+  - Death
   m_RaysPerDirection: 6
-  m_MaxRayDegrees: 49
+  m_MaxRayDegrees: 30
   m_SphereCastRadius: 0.5
   m_RayLength: 35
   m_RayLayerMask:
@@ -815,6 +815,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_InferenceDevice
       value: 0
       objectReference: {fileID: 0}
@@ -824,7 +828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_BrainParameters.VectorActionSize.Array.size
@@ -870,6 +874,10 @@ PrefabInstance:
       propertyPath: m_Grayscale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5922006555448746584, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
+      propertyPath: m_ObservationType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9129190772394047387, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -910,11 +918,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5922006555448746584, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9129190772394047387, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 6112203661849688699}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af78268e89bc04c779bc220e7a00230d, type: 3}

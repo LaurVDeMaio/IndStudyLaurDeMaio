@@ -19,21 +19,21 @@ public class PlayerController : Agent
 
     Vector3 startingPosition;
     float lastDist;
-    float lastAngle = 360;
+    // float lastAngle = 360;
 
     float move = 0;
     float turn = 0;
 
     Stats stats;
 
-    private float moveForce = 15.0f;
+    private float moveForce = 20.0f;
     private float turnForce = 0.01f;
 
-    private float deathReward = 20.0f;
-    private float goalReward = 12.0f;
-    private float rCloser = 0.07f;
-    private float rFurther = 0.02f;
-    private float rAngle = 0.05f;
+    private float deathReward = 100.0f;
+    private float goalReward = 20.0f;
+    private float rCloser = 0.05f;
+    // private float rFurther = 0.07f;
+    //private float rAngle = 0.05f;
 
     RaycastHit hit;
     LayerMask collisions;
@@ -108,8 +108,8 @@ public class PlayerController : Agent
         transform.localPosition = startingPosition;
         lastDist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
         var dir = goal.transform.localPosition - transform.localPosition;
-        var angle = Vector3.Angle(transform.forward, dir);
-        lastAngle = angle;
+        // var angle = Vector3.Angle(transform.forward, dir);
+        // lastAngle = angle;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -131,8 +131,8 @@ public class PlayerController : Agent
         //var angle = Vector3.Angle(transform.forward, dir);
         //sensor.AddObservation(angle);
 
-        //var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
-        //sensor.AddObservation(dist);
+        var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        sensor.AddObservation(dist);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -152,17 +152,17 @@ public class PlayerController : Agent
         rb.AddForce(transform.forward * move * moveForce, ForceMode.Force);
         rb.AddTorque(0, turn * turnForce, 0, ForceMode.Force);
 
-        // var curdist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
-        // if (curdist < lastDist)
-        // {
-        //     SetReward(rCloser);
-        // }
-        // else
-        // {
-        //     SetReward(-rFurther);
-        // }
+        var curdist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
+        if (curdist < lastDist)
+        {
+            SetReward(rCloser);
+        }
+        else
+        {
+            //SetReward(-rFurther);
+        }
 
-        //lastDist = curdist;
+        lastDist = curdist;
 
         // var dir = goal.transform.localPosition - transform.localPosition;
         // var curAngle = Vector3.Angle(transform.forward, dir);
