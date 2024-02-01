@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obsCount
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obstacle
