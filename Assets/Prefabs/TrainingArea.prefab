@@ -220,7 +220,7 @@ MonoBehaviour:
   m_DetectableTags:
   - Goal
   - Death
-  m_RaysPerDirection: 6
+  m_RaysPerDirection: 12
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5
   m_RayLength: 35
@@ -813,10 +813,10 @@ PrefabInstance:
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 236597f6feaaf4c639836fec16c77bb9, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_BehaviorType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_InferenceDevice
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obsCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obstacle
