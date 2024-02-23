@@ -813,7 +813,7 @@ PrefabInstance:
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: f8e7732b15e5f4f6aa95264f4a8fece2, type: 3}
     - target: {fileID: 2175009769220183316, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: m_BehaviorType
       value: 0
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obsCount
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obstacle
