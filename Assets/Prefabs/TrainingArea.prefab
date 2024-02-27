@@ -188,7 +188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6112203661849688699
 Transform:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obsCount
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4506686665602620503, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
       propertyPath: obstacle
@@ -918,8 +918,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5922006555448746584, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9129190772394047387, guid: af78268e89bc04c779bc220e7a00230d, type: 3}
