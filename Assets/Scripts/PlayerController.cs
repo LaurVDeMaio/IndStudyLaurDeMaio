@@ -19,7 +19,6 @@ public class PlayerController : Agent
 
     Vector3 startingPosition;
     float lastDist;
-    // float lastAngle = 360;
 
     float move = 0;
     float turn = 0;
@@ -31,14 +30,13 @@ public class PlayerController : Agent
 
     private float deathReward = 100.0f;
     private float goalReward = 20.0f;
-    private float rCloser = 0.05f;
-    // private float rFurther = 0.07f;
+    private float rCloser = 1.0f;
+    //private float rFurther = 0.07f;
     //private float rAngle = 0.05f;
 
     RaycastHit hit;
     LayerMask collisions;
     
-
     int episodeNum = 0;
 
     void Start()
@@ -108,8 +106,6 @@ public class PlayerController : Agent
         transform.localPosition = startingPosition;
         lastDist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
         var dir = goal.transform.localPosition - transform.localPosition;
-        // var angle = Vector3.Angle(transform.forward, dir);
-        // lastAngle = angle;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -117,7 +113,7 @@ public class PlayerController : Agent
         RandomizeGoals();
         RandomizePlayers();
 
-        //instantiate a random number of boxes
+        //instantiate a random number of obstacles
         RandomizeObstaclesPosition();
     }
 
@@ -126,11 +122,7 @@ public class PlayerController : Agent
         if (inHumanControl) return;
 
         sensor.AddObservation(transform.localPosition);
-        
-        //var dir = goal.transform.localPosition - transform.localPosition;
-        //var angle = Vector3.Angle(transform.forward, dir);
-        //sensor.AddObservation(angle);
-
+    
         var dist = Vector3.Distance(goal.transform.localPosition, transform.localPosition);
         sensor.AddObservation(dist);
     }
@@ -140,10 +132,7 @@ public class PlayerController : Agent
         if (inHumanControl) return;
 
         move = actions.ContinuousActions[0];
-
         turn = actions.ContinuousActions[1];
-
-       // Debug.Log(move + " " + turn);
 
     }
 
@@ -164,13 +153,6 @@ public class PlayerController : Agent
 
         lastDist = curdist;
 
-        // var dir = goal.transform.localPosition - transform.localPosition;
-        // var curAngle = Vector3.Angle(transform.forward, dir);
-        // if (curAngle < lastAngle)
-        // {
-        //     SetReward(rAngle);
-        // }
-        // lastAngle = curAngle;
     }
 
 
@@ -225,9 +207,4 @@ public class PlayerController : Agent
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-       
-
-    }
 }
