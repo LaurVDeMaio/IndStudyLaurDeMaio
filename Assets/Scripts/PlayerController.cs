@@ -28,10 +28,10 @@ public class PlayerController : Agent
     private float moveForce = 20.0f;
     private float turnForce = 0.01f;
 
-    private float deathReward = 100.0f;
+    private float deathReward = -100.0f;
     private float goalReward = 20.0f;
     private float rCloser = 1.0f;
-    //private float rFurther = 0.07f;
+    private float rFurther = 4.00f;
     //private float rAngle = 0.05f;
 
     RaycastHit hit;
@@ -148,7 +148,7 @@ public class PlayerController : Agent
         }
         else
         {
-            //SetReward(-rFurther);
+            SetReward(-rFurther);
         }
 
         lastDist = curdist;
@@ -199,7 +199,7 @@ public class PlayerController : Agent
         else if (collision.gameObject.CompareTag("Death"))
         {
             Debug.Log("<color=#ff0000>OH NOOOO</color>");
-            SetReward(-deathReward);
+            SetReward(deathReward);
             EndEpisode();
 
             stats.AddGoal(episodeNum, 0);
