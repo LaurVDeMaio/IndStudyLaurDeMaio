@@ -30,9 +30,8 @@ public class PlayerController : Agent
 
     private float deathReward = -100.0f;
     private float goalReward = 20.0f;
-    private float rCloser = 1.0f;
-    private float rFurther = 4.00f;
-    //private float rAngle = 0.05f;
+    private float rCloser = 0.05f;
+    //private float rFurther = 4.00f;
 
     RaycastHit hit;
     LayerMask collisions;
@@ -148,7 +147,7 @@ public class PlayerController : Agent
         }
         else
         {
-            SetReward(-rFurther);
+            //SetReward(-rFurther);
         }
 
         lastDist = curdist;
