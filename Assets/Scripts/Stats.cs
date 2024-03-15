@@ -61,47 +61,47 @@ public class Stats : MonoBehaviour
     public void AddGoal(int agentEpisode, int x)
     {
         //testing code
-        // if (x == 1)
-        // {
-        //     goal++;
+        if (x == 1)
+        {
+            goal++;
             
-        // }
+        }
 
-        // else if (x == 0)
-        // {
-        //     ohno++;
+        else if (x == 0)
+        {
+            ohno++;
            
-        // }
+        }
 
-        // Debug.Log("Goals: " + goal + " Fails: " + ohno + " Total: " + (goal+ohno));
+        Debug.Log("Goals: " + goal + " Fails: " + ohno + " Total: " + (goal+ohno));
 
 
         //training code
-        Goals.RemoveAt(0);
+        // Goals.RemoveAt(0);
 
-        if(x == 1) {
-            Goals.Add(1);
-        }
-        else if(x == 0) {
-            Goals.Add(0);
-        }
+        // if(x == 1) {
+        //     Goals.Add(1);
+        // }
+        // else if(x == 0) {
+        //     Goals.Add(0);
+        // }
 
-        int total = 0;
-        foreach (var g in Goals)
-        {
-            total += g;
-        }
+        // int total = 0;
+        // foreach (var g in Goals)
+        // {
+        //     total += g;
+        // }
 
-        if (total > highest)
-        {
-            highest = total;
-            hightime = stopwatch.Elapsed;
-            highepisode = agentEpisode;
-            csv += highest + "," + highepisode + "," + ConvertTime(hightime) + "\n";
-            System.IO.File.WriteAllText(csv_filename, csv);
-        }
+        // if (total > highest)
+        // {
+        //     highest = total;
+        //     hightime = stopwatch.Elapsed;
+        //     highepisode = agentEpisode;
+        //     csv += highest + "," + highepisode + "," + ConvertTime(hightime) + "\n";
+        //     System.IO.File.WriteAllText(csv_filename, csv);
+        // }
 
-        Debug.Log("Goals: " + total + "/100 -- " + highest + " -- " + ConvertTime(hightime) + " -- " + highepisode);
+        // Debug.Log("Goals: " + total + "/100 -- " + highest + " -- " + ConvertTime(hightime) + " -- " + highepisode);
     }
 
     string ConvertTime(System.TimeSpan ts)
